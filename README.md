@@ -2,13 +2,13 @@
 
 ## Task 1.1
 
-Write a wrapper for the `read` and `write` system calls by using the `syscall` function from the glibc. You should handle basic error cases without performing the actual system call if possible and manage error reporting in the same way as the glibc would.
+Write a wrapper for the `read` and `write` system calls by using the `syscall` function from the glibc. Add the following optimsation: if the number of bytes to read/write is 0, do not call the system call.
 
 The resulting binary should be a shared library named `librw.so.1` and should be usable by any application to replace the original glibc implementations of these two wrappers without changing the behaviour of applications.
 
 ## Task 1.2
 
-Reuse your wrappers from task 1.1 and replace the `syscall` function with assembly that performs the system call.
+Reuse your wrappers from task 1.1 and replace the `syscall` function with assembly that performs the system call. You must manage error reporting in the same way as the glibc would.
 
 The resulting binary should be a shared library named `librw.so.2` and should be usable by any application to replace the original glibc implementations of these two wrappers without changing the behaviour of applications.
 
