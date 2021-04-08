@@ -134,6 +134,7 @@ def run(
     extra_env: Dict[str, str] = {},
     stdin: _FILE = None,
     stdout: _FILE = None,
+    stderr: _FILE = None,
     input: Optional[str] = None,
     check: bool = True,
     shell: bool = False,
@@ -156,12 +157,15 @@ def run(
         pretty_cmd += f" < {stdin.name}"
     if isinstance(stdout, io.IOBase):
         pretty_cmd += f" > {stdout.name}"
+    if isinstance(stderr, io.IOBase):
+        pretty_cmd += f" 2> {stderr.name}"
     info(pretty_cmd)
     return subprocess.run(
         cmd[0] if shell else cmd,
         cwd=PROJECT_ROOT,
         stdin=stdin,
         stdout=stdout,
+        stderr=stderr,
         check=check,
         env=env,
         text=True,
