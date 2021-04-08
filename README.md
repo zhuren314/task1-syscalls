@@ -8,7 +8,7 @@ The resulting binary should be a shared library named `librw.so.1` and should be
 
 ## Task 1.2
 
-Reuse your wrappers from task 1.1 and replace the `syscall` function with assembly that performs the system call. You must manage error reporting in the same way as the glibc would.
+Reuse your wrappers from task 1.1 and replace the `syscall` function with assembly that performs the system call. You must manage error reporting in the same way the glibc would.
 
 The resulting binary should be a shared library named `librw.so.2` and should be usable by any application to replace the original glibc implementations of these two wrappers without changing the behaviour of applications.
 
