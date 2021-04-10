@@ -13,7 +13,7 @@ all:
 	false
 
 # C example:
-#all: librw-1.so librw-2.so
+#all: librw_1.so librw_2.so
 #librw_1.so: task-1_1.c
 #	$(CC) $(CFLAGS) -shared -fPIC -ldl -o $@ $<
 #
