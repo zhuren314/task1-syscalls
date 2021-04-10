@@ -2,13 +2,12 @@
 
 import sys, os, io, tempfile
 
-from testsupport import run, subtest, info, warn
+from testsupport import run, subtest, info, warn, ensure_library
 
 
 def main() -> None:
-
     # Get test abspath
-    here = os.path.dirname(os.path.abspath(sys.argv[0]))
+    lib = ensure_library("librw-1.so")
     with tempfile.TemporaryDirectory() as tmpdir:
 
         # Generate a small random file
@@ -20,10 +19,10 @@ def main() -> None:
             run([ "cp", f"{tmpdir}/rdn.txt", f"{tmpdir}/rdn.glibc.txt" ])
 
         # Copy files with LD_PRELOADed librw.so.1
-        with subtest("Run cp with librw.so.1 preloaded"):
+        with subtest(f"Run cp with {lib} preloaded"):
             with open(f"{tmpdir}/stderr", "w+") as stderr:
                 run([ "cp", f"{tmpdir}/rdn.txt", f"{tmpdir}/rdn.librw.1.txt" ],
-                    extra_env={"LD_PRELOAD": f"{here}/../librw.so.1"},
+                    extra_env={"LD_PRELOAD": str(lib)},
                     stderr=stderr)
             with open(f"{tmpdir}/stderr", "r") as stderr:
                 for l in stderr.readlines():

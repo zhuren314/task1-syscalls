@@ -13,12 +13,12 @@ all:
 	false
 
 # C example:
-#all:
-#	$(CC) $(CFLAGS) -o task-name task-name.c
-
-# C++ example:
-#all:
-#	$(CXX) $(CXXFLAGS) -o task-name task-name.cpp
+#all: librw-1.so librw-2.so
+#librw-1.so: task-1_1.c
+#	$(CC) $(CFLAGS) -shared -fPIC -ldl -o $@ $<
+#
+#librw-2.so: task-1_2.c
+#	$(CC) $(CFLAGS) -shared -fPIC -ldl -o $@ $<
 
 # Rust example:
 #all:

@@ -37,8 +37,15 @@ dependencies = [
 ]
 
 [[package]]
-name = "task-name"
-version = "0.1.0"
+name = "rw-1"
+version = "0.0.1"
+dependencies = [
+ "nix",
+]
+
+[[package]]
+name = "rw-2"
+version = "0.0.1"
 dependencies = [
  "nix",
 ]
