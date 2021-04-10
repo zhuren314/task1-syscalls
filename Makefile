@@ -14,10 +14,10 @@ all:
 
 # C example:
 #all: librw-1.so librw-2.so
-#librw-1.so: task-1_1.c
+#librw_1.so: task-1_1.c
 #	$(CC) $(CFLAGS) -shared -fPIC -ldl -o $@ $<
 #
-#librw-2.so: task-1_2.c
+#librw_2.so: task-1_2.c
 #	$(CC) $(CFLAGS) -shared -fPIC -ldl -o $@ $<
 
 # Rust example:

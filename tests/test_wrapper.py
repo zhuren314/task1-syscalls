@@ -7,7 +7,7 @@ from testsupport import run, subtest, info, warn, ensure_library
 
 def main() -> None:
     # Get test abspath
-    lib = ensure_library("librw-1.so")
+    lib = ensure_library("librw_1.so")
     with tempfile.TemporaryDirectory() as tmpdir:
 
         # Generate a small random file
