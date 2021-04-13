@@ -30,7 +30,7 @@ def main() -> None:
                 for l in stderr.readlines():
                     if "ERROR: ld.so:" in l:
                         warn(l)
-                        return
+                        exit(1)
 
         # Check that glibc and librw.so.2 give the same result
         with subtest("Check that both resulting files are identical"):
@@ -50,7 +50,7 @@ def main() -> None:
                         ok += 1
                 if ok != 2:
                     warn(f"{str(lib)} is not providing read, write, or both!")
-                    return
+                    exit(1)
 
         # Check that librw_2.so does not use the syscall() function from the libc
         with subtest("Check that the syscall() function from libc is not used"):
@@ -61,7 +61,7 @@ def main() -> None:
                 for l in stdout.readlines():
                     if " U syscall@" in l:
                         warn("syscall() function from the libc is used")
-                        return
+                        exit(1)
 
 if __name__ == "__main__":
     main()

@@ -28,7 +28,7 @@ def main() -> None:
                 for l in stderr.readlines():
                     if "ERROR: ld.so:" in l:
                         warn(l)
-                        return
+                        exit(1)
 
         # Check that glibc and librw.so.1 give the same result
         with subtest("Check that both resulting files are identical"):
@@ -48,7 +48,7 @@ def main() -> None:
                         ok += 1
                 if ok != 2:
                     warn(f"{str(lib)} is not providing read, write, or both!")
-                    return
+                    exit(1)
 
     # # Check that the nbytes == 0 optimisation is implemented
     # with subtest("Check that librw.so.1 avoids the syscall if nothing will be read/written"):
