@@ -52,5 +52,16 @@ def main() -> None:
                     warn(f"{str(lib)} is not providing read, write, or both!")
                     return
 
+        # Check that librw_2.so does not use the syscall() function from the libc
+        with subtest("Check that the syscall() function from libc is not used"):
+            with open(f"{tmpdir}/stdout", "w+") as stdout:
+                run(["nm", '-u', str(lib)],
+                    stdout=stdout)
+            with open(f"{tmpdir}/stdout", "r") as stdout:
+                for l in stdout.readlines():
+                    if " U syscall@" in l:
+                        warn("syscall() function from the libc is used")
+                        return
+
 if __name__ == "__main__":
     main()
