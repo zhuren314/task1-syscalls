@@ -36,6 +36,21 @@ def main() -> None:
         with subtest("Check that both resulting files are identical"):
             run(["cmp", f"{tmpdir}/rdn.glibc.txt", f"{tmpdir}/rdn.librw.2.txt"])
 
+        # Check that librw_2.so provides read() and write() symbols
+        with subtest("Check that read and write functions are available in librw_2.so"):
+            with open(f"{tmpdir}/stdout", "w+") as stdout:
+                run(["nm", '-D', '--defined-only', str(lib)],
+                    stdout=stdout)
+            ok = 0
+            with open(f"{tmpdir}/stdout", "r") as stdout:
+                for l in stdout.readlines():
+                    if l.endswith(" T read\n"):
+                        ok += 1
+                    elif l.endswith(" T write\n"):
+                        ok += 1
+                if ok != 2:
+                    warn(f"{str(lib)} is not providing read, write, or both!")
+                    return
 
 if __name__ == "__main__":
     main()
