@@ -13,9 +13,9 @@ Reuse your wrappers from task 1.1 and replace the `syscall` function with assemb
 The resulting binary should be a shared library named `librw_2.so` and should be usable by any application to replace the original glibc implementations of these two wrappers without changing the behaviour of applications.
 
 ### Inline assembly
-*For C/C++ users:* You can use `asm()` ((docs)[https://gcc.gnu.org/onlinedocs/gcc/Using-Assembly-Language-with-C.html]).
+*For C/C++ users:* You can use `asm()` ([docs](https://gcc.gnu.org/onlinedocs/gcc/Using-Assembly-Language-with-C.html)).
 
-*For Rust users:* You can use `asm!()` from rust nightly ((docs)[https://doc.rust-lang.org/nightly/unstable-book/library-features/asm.html]).
+*For Rust users:* You can use `asm!()` from rust nightly ([docs](https://doc.rust-lang.org/nightly/unstable-book/library-features/asm.html)).
 
 ## Task 1.3
 
