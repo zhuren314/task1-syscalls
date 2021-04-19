@@ -40,7 +40,9 @@ read(3, 0x7fffa4398078, 832) = 832
 
 For this task, you only need to support tracing two system calls: `read` and `write`.
 You are free to support other system calls if you want to.
+
 You should carefully read the manpage of the `ptrace` system call to understand how to use it.
+You can also find various resources online on how to use `ptrace()`.
 
 The resulting binary should be an executable named `tracer`.
 
