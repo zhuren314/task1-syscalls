@@ -19,7 +19,30 @@ The resulting binary should be a shared library named `librw_2.so` and should be
 
 ## Task 1.3
 
-I wanted to do something more complicated: implement an strace tool fully in userspace, without using kernel facilities. But that seems really hard/impossible (I thought they could LD_PRELOAD and replace the glibc `syscall` function, but that doesn't seem possible since `syscall` is a variadic function...
+Write a program that traces the system calls performed by another program.
+To do this, you will need to use the `ptrace()` system call to attach a tracer process to a traced process (*tracee*).
+Your program should take the program to trace and its arguments as arguments.
+If you want to trace the `ls -l` program, you should run:
+
+```console
+$ ./tracer ls -l
+```
+
+Your tracing program should output to stderr in the following format:
+```console
+syscall_name(arg1, arg2, ...) = retval
+```
+Arguments should be correctly formatted, in a similar fashion to what `strace` does.
+For example, when a `read` system call is detected on file descriptor 3, with a buffer address of 0x7fffa4398078, and a size of 832 bytes, the tracer should output:
+```console
+read(3, 0x7fffa4398078, 832) = 832
+```
+
+For this task, you only need to support tracing two system calls: `read` and `write`.
+You are free to support other system calls if you want to.
+You should carefully read the manpage of the `ptrace` system call to understand how to use it.
+
+The resulting binary should be an executable named `tracer`.
 
 ## Going further (not graded)
 
