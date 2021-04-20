@@ -46,6 +46,8 @@ You can also find various resources online on how to use `ptrace()`.
 
 The resulting binary should be an executable named `tracer`.
 
+*Note*: To understand what is available in the registers that you can get through the `ptrace` system call, we strongly advise you to use a debugger such as `gdb`.
+
 ## Going further (not graded)
 
 If you want to go further, you can try to implement a new system call in the Linux kernel. You can find a lot of documentation on the internet, as well as examples in the Linux kernel source code (you can use this [indexing website](https://elixir.bootlin.com/linux/latest/source) to easily navigate in kernel code).
