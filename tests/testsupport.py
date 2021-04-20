@@ -140,6 +140,7 @@ def run_project_executable(
     extra_env: Dict[str, str] = {},
     stdin: _FILE = None,
     stdout: _FILE = None,
+    stderr: _FILE = None,
     input: Optional[str] = None,
     check: bool = True,
 ) -> "subprocess.CompletedProcess[Text]":
@@ -152,7 +153,7 @@ def run_project_executable(
         raise OSError(
             f"executable '{exe}' not found. The following locations where considered:\n  {locations}"
         )
-    return run([fullpath] + args, extra_env, stdin, stdout, input=input, check=check)
+    return run([fullpath] + args, extra_env, stdin, stdout, stderr, input=input, check=check)
 
 
 def run(
