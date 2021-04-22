@@ -7,4 +7,4 @@ check: ${ROOT_DIR}/test_tracer
 	$(PYTHON3) ${ROOT_DIR}/test_tracer.py
 
 ${ROOT_DIR}/test_tracer: ${ROOT_DIR}/test_tracer.c
-	gcc -O0 -o $@ $<
+	gcc -Og -g -o $@ $<
