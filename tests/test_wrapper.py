@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
-import sys, os, io, tempfile
+import os
+import tempfile
 
-from testsupport import run, subtest, info, warn, ensure_library
+from testsupport import run, subtest, warn, ensure_library
 
 
 def main() -> None:
