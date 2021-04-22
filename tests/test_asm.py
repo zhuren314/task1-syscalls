@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
-import sys, os, tempfile
+import os
+import tempfile
 
-from testsupport import run, subtest, info, warn, ensure_library
+from testsupport import run, subtest, warn, ensure_library
 
 
 def main() -> None:
@@ -39,8 +40,7 @@ def main() -> None:
         # Check that librw_2.so provides read() and write() symbols
         with subtest("Check that read and write functions are available in librw_2.so"):
             with open(f"{tmpdir}/stdout", "w+") as stdout:
-                run(["nm", '-D', '--defined-only', str(lib)],
-                    stdout=stdout)
+                run(["nm", "-D", "--defined-only", str(lib)], stdout=stdout)
             ok = 0
             with open(f"{tmpdir}/stdout", "r") as stdout:
                 for l in stdout.readlines():
@@ -55,13 +55,13 @@ def main() -> None:
         # Check that librw_2.so does not use the syscall() function from the libc
         with subtest("Check that the syscall() function from libc is not used"):
             with open(f"{tmpdir}/stdout", "w+") as stdout:
-                run(["nm", '-u', str(lib)],
-                    stdout=stdout)
+                run(["nm", "-u", str(lib)], stdout=stdout)
             with open(f"{tmpdir}/stdout", "r") as stdout:
                 for l in stdout.readlines():
                     if " U syscall@" in l:
                         warn("syscall() function from the libc is used")
                         exit(1)
+
 
 if __name__ == "__main__":
     main()

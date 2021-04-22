@@ -9,7 +9,8 @@ jobs:
     name: Lint Code Base
     if: github.repository_owner == 'ls1-sys-prog-course-internal'
     runs-on: ubuntu-latest
-
+    env:
+      USER: runner
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
