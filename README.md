@@ -17,6 +17,8 @@ The resulting binary should be a shared library named `librw_2.so` and should be
 
 *For Rust users:* You can use `asm!()` from rust nightly ([docs](https://doc.rust-lang.org/nightly/unstable-book/library-features/asm.html)).
 
+Our CI system also has rust nightly installed. It is accessible via `cargo +nightly build`.
+
 ## Task 1.3
 
 Write a program that traces the system calls performed by another program.
