@@ -63,3 +63,4 @@ MANIFEST
 .mypy_cache/
 .dmypy.json
 dmypy.json
+tests/test_tracer
