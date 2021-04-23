@@ -27,6 +27,12 @@ def main() -> None:
                     stderr=stderr,
                     stdout=stdout,
                 )
+            if os.stat(f"{tmpdir}/stdout").st_size == 0:
+                warn("Nothing available in stdout")
+                exit(1)
+            if os.stat(f"{tmpdir}/stderr").st_size == 0:
+                warn("Nothing available in stderr")
+                exit(1)
             with open(f"{tmpdir}/diffout", "w+") as diffout:
                 run(
                     ["diff", f"{tmpdir}/stderr", f"{tmpdir}/stdout"],
