@@ -3,7 +3,7 @@
 import os
 import tempfile
 
-from testsupport import run, subtest, warn, ensure_library
+from testsupport import run, subtest, warn, ensure_library, test_root
 
 
 def main() -> None:
@@ -51,6 +51,15 @@ def main() -> None:
                 if ok != 2:
                     warn(f"{str(lib)} is not providing read, write, or both!")
                     exit(1)
+
+        # Check error handling
+        with subtest("Check that errno is correctly set"):
+            test_error = test_root().joinpath("test_error")
+            ret = run([ str(test_error), f"{tmpdir}/rdn.txt" ],
+                      extra_env={"LD_PRELOAD": str(lib)}, check=False)
+            if ret.returncode != 9:
+                warn(f"errno is not handled correctly")
+                exit(1)
 
         # Check that librw_2.so does not use the syscall() function from the libc
         with subtest("Check that the syscall() function from libc is not used"):
