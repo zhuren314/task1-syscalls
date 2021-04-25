@@ -55,6 +55,8 @@ def main() -> None:
         # Check error handling
         with subtest("Check that errno is correctly set"):
             test_error = test_root().joinpath("test_error")
+            if not test_error.exists():
+                run(["make", "-C", str(test_root()), str(test_error)])
             ret = run([ str(test_error), f"{tmpdir}/rdn.txt" ],
                       extra_env={"LD_PRELOAD": str(lib)}, check=False)
             if ret.returncode != 9:
