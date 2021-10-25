@@ -181,6 +181,7 @@ def run_project_executable(
         extra_env,
         stdin,
         stdout,
+        stderr,
         input=input,
         check=check,
         timeout=timeout,
